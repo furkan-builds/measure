@@ -3,14 +3,14 @@
 Track of planned features and infrastructure for Measure.
 
 ## Phase 0: Project Setup
-- [ ] Initialize monorepo (pnpm workspaces, Turborepo)
-- [ ] Configure Biome (linting + formatting)
-- [ ] Set up TypeScript configs (base + per-package)
-- [ ] Scaffold `apps/web` (Vite + React)
-- [ ] Scaffold `apps/api` (Express + tRPC)
-- [ ] Scaffold `apps/mobile` (Expo)
-- [ ] Scaffold `packages/shared`, `packages/db`, `packages/ui`
-- [ ] Set up PostgreSQL + Drizzle ORM with initial schema
+- [x] Initialize monorepo (pnpm workspaces, Turborepo)
+- [x] Configure Biome (linting + formatting)
+- [x] Set up TypeScript configs (base + per-package)
+- [x] Scaffold `apps/web` (Vite + React)
+- [x] Scaffold `apps/api` (Express + tRPC)
+- [x] Scaffold `apps/mobile` (Expo)
+- [x] Scaffold `packages/shared`, `packages/db`, `packages/ui`
+- [x] Set up PostgreSQL + Drizzle ORM with initial schema
 - [ ] Set up Vitest for web/shared, Jest for api/mobile
 - [ ] GitHub repo setup (branch protection, PR template)
 
