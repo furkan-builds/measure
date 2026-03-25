@@ -15,24 +15,47 @@ Track of planned features and infrastructure for Measure.
 - [ ] GitHub repo setup (branch protection, PR template)
 
 ## Phase 1: Core Food Logging
+
+### API
 - [x] User authentication (sign up, log in, sessions)
 - [ ] Food database schema (foods, servings, nutrients)
 - [ ] Manual food entry (name, calories, macros)
 - [ ] Daily food log (add, edit, remove entries)
-- [ ] Daily calorie/macro summary view
+- [ ] Daily calorie/macro summary
 - [ ] Date navigation (view past days)
 
+### Frontend
+- [ ] Sign up / log in pages
+- [ ] Food entry form
+- [ ] Daily food log view
+- [ ] Daily summary view
+- [ ] Date navigation
+
 ## Phase 2: Weight Tracking
-- [ ] Weight log schema and API
+
+### API
+- [ ] Weight log schema and endpoints
 - [ ] Log daily weight entries
-- [ ] Weight history chart (trend over time)
 - [ ] Goal weight setting
 
+### Frontend
+- [ ] Weight entry form
+- [ ] Weight history chart (trend over time)
+- [ ] Goal weight display
+
 ## Phase 3: Nutritional Detail
+
+### API
 - [ ] Micronutrient tracking (vitamins, minerals)
 - [ ] Meal categorization (breakfast, lunch, dinner, snacks)
 - [ ] Daily nutritional goals (calories, protein, carbs, fat)
 - [ ] Progress indicators (daily goals vs. actuals)
+
+### Frontend
+- [ ] Nutritional detail views
+- [ ] Meal category filters
+- [ ] Goals settings page
+- [ ] Progress indicators and charts
 
 ## Phase 4: Food Search and Database
 - [ ] Integrate external food database API (e.g., USDA FoodData Central, Open Food Facts)
