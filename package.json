@@ -11,11 +11,13 @@
 		"test": "turbo test",
 		"typecheck": "turbo typecheck",
 		"docker:up": "docker compose up -d",
-		"docker:down": "docker compose down"
+		"docker:down": "docker compose down",
+		"prepare": "husky"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.0",
 		"@types/node": "^25.5.0",
+		"husky": "^9.1.7",
 		"turbo": "^2.4.0",
 		"typescript": "^5.7.0"
 	},

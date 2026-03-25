@@ -141,6 +141,12 @@ pnpm test --filter=@measure/web # run tests for a specific package
 - Add a blank line before `expect()` calls to separate setup from assertions
 - Use the same naming convention as the source file: `food.ts` → `food.test.ts`
 
+## Git Hooks
+
+A **pre-push** hook runs automatically before every `git push`. It runs lint, typecheck, and all tests. If any step fails, the push is blocked. This is managed by [Husky](https://typicode.github.io/husky/) and configured in `.husky/pre-push`.
+
+After cloning, run `pnpm install` to set up the hooks (the `prepare` script handles this automatically).
+
 ## Git Workflow
 
 Never commit directly to `main`. All changes go through branches and pull requests.

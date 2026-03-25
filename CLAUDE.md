@@ -76,6 +76,10 @@ These conventions are enforced by Biome where possible (see `biome.json`). Follo
 - **Drizzle schema** in `packages/db/src/schema/` defines all database tables. Migrations are generated from schema diffs, not hand-written.
 - The `packages/ui/` library contains presentational components. Platform-specific components use `.web.tsx` / `.native.tsx` file extensions where needed.
 
+## Git Hooks
+
+A **pre-push** hook (via Husky) runs `pnpm lint`, `pnpm typecheck`, and `pnpm test` before every push. Hooks are installed automatically by `pnpm install`.
+
 ## Branch and PR Conventions
 
 - Branch naming: `feat/`, `fix/`, `chore/`, `docs/` prefixes (e.g., `feat/food-search`)
