@@ -1,0 +1,23 @@
+{
+	"name": "@measure/shared",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"exports": {
+		"./schemas/food": "./src/schemas/food.ts",
+		"./schemas/weight": "./src/schemas/weight.ts",
+		"./schemas/user": "./src/schemas/user.ts"
+	},
+	"scripts": {
+		"typecheck": "tsc --noEmit",
+		"test": "vitest run",
+		"test:watch": "vitest"
+	},
+	"dependencies": {
+		"zod": "^3.24.0"
+	},
+	"devDependencies": {
+		"typescript": "^5.7.0",
+		"vitest": "^3.1.0"
+	}
+}
