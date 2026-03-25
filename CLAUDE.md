@@ -16,7 +16,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Database:** PostgreSQL + Drizzle ORM
 - **Validation:** Zod (shared schemas used by tRPC, forms, and DB)
 - **Linting/Formatting:** Biome
-- **Testing:** Vitest (web/shared), Jest (mobile/api)
+- **Testing:** Vitest (web/api/shared/ui/db), Jest (mobile)
 
 ## Repository Structure
 

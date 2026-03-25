@@ -105,6 +105,42 @@ Use `import type` when importing only types.
 import type { Food } from "@measure/shared/schemas/food";
 ```
 
+## Testing
+
+### Frameworks
+
+- **Vitest** for web, api, shared, ui, and db packages
+- **Jest** (with `jest-expo` preset) for the mobile app
+
+### Test file location
+
+Tests live in `__tests__/` directories next to the source they test:
+
+```
+src/
+  schemas/
+    __tests__/
+      food.test.ts
+    food.ts
+  components/
+    __tests__/
+      Button.test.tsx
+    Button.tsx
+```
+
+### Running tests
+
+```bash
+pnpm test                       # run all tests
+pnpm test --filter=@measure/web # run tests for a specific package
+```
+
+### Writing tests
+
+- Import `describe`, `expect`, `it` from `vitest` (or `@jest/globals` for mobile)
+- Add a blank line before `expect()` calls to separate setup from assertions
+- Use the same naming convention as the source file: `food.ts` → `food.test.ts`
+
 ## Git Workflow
 
 Never commit directly to `main`. All changes go through branches and pull requests.

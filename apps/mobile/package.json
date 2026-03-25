@@ -7,7 +7,9 @@
 		"dev": "expo start",
 		"build:android": "expo build:android",
 		"build:ios": "expo build:ios",
-		"typecheck": "tsc --noEmit"
+		"typecheck": "tsc --noEmit",
+		"test": "jest",
+		"test:watch": "jest --watch"
 	},
 	"dependencies": {
 		"@measure/shared": "workspace:*",
@@ -17,7 +19,11 @@
 		"react-native": "~0.77.0"
 	},
 	"devDependencies": {
+		"@jest/globals": "^29.7.0",
 		"@types/react": "^19.0.0",
+		"jest": "^29.7.0",
+		"jest-expo": "~52.0.0",
+		"ts-node": "^10.9.2",
 		"typescript": "^5.7.0"
 	}
 }
