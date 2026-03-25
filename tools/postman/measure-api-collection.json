@@ -1,0 +1,100 @@
+{
+	"info": {
+		"name": "Measure API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3001/api/trpc"
+		}
+	],
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Sign Up",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Test User\",\n\t\"email\": \"test@example.com\",\n\t\"password\": \"mypassword123\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth.signup",
+							"host": ["{{baseUrl}}"],
+							"path": ["auth.signup"]
+						}
+					}
+				},
+				{
+					"name": "Log In",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"test@example.com\",\n\t\"password\": \"mypassword123\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth.login",
+							"host": ["{{baseUrl}}"],
+							"path": ["auth.login"]
+						}
+					}
+				},
+				{
+					"name": "Me",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/auth.me",
+							"host": ["{{baseUrl}}"],
+							"path": ["auth.me"]
+						}
+					}
+				},
+				{
+					"name": "Log Out",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/auth.logout",
+							"host": ["{{baseUrl}}"],
+							"path": ["auth.logout"]
+						}
+					}
+				},
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/health.check",
+							"host": ["{{baseUrl}}"],
+							"path": ["health.check"]
+						}
+					}
+				}
+			]
+		}
+	]
+}

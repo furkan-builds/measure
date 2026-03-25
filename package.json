@@ -4,6 +4,9 @@
 	"packageManager": "pnpm@10.33.0",
 	"scripts": {
 		"dev": "turbo dev",
+		"dev:web": "turbo dev --filter=@measure/web",
+		"dev:api": "turbo dev --filter=@measure/api",
+		"dev:mobile": "turbo dev --filter=@measure/mobile",
 		"build": "turbo build",
 		"lint": "biome check .",
 		"lint:fix": "biome check --write .",
@@ -22,6 +25,6 @@
 		"typescript": "^5.7.0"
 	},
 	"pnpm": {
-		"onlyBuiltDependencies": ["@biomejs/biome", "esbuild"]
+		"onlyBuiltDependencies": ["@biomejs/biome", "argon2", "esbuild"]
 	}
 }

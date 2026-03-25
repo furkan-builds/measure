@@ -92,3 +92,4 @@ The API server reads from `apps/api/.env` (not committed). Required vars:
 
 - `DATABASE_URL` — PostgreSQL connection string
 - `PORT` — API server port (default: 3001)
+- `JWT_SECRET` — secret key for signing JWT tokens

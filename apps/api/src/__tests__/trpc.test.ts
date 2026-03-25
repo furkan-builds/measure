@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { createMockContext } from "../__mocks__/context.mock";
 import { publicProcedure, router } from "../trpc";
 
 describe("trpc", () => {
@@ -15,7 +16,7 @@ describe("trpc", () => {
 		const testRouter = router({
 			ping: publicProcedure.query(() => "pong"),
 		});
-		const caller = testRouter.createCaller({});
+		const caller = testRouter.createCaller(createMockContext());
 		const result = await caller.ping();
 
 		expect(result).toBe("pong");

@@ -6,7 +6,8 @@
 	"exports": {
 		"./schemas/food": "./src/schemas/food.ts",
 		"./schemas/weight": "./src/schemas/weight.ts",
-		"./schemas/user": "./src/schemas/user.ts"
+		"./schemas/user": "./src/schemas/user.ts",
+		"./schemas/auth": "./src/schemas/auth.ts"
 	},
 	"scripts": {
 		"typecheck": "tsc --noEmit",
