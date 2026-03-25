@@ -15,7 +15,7 @@ Track of planned features and infrastructure for Measure.
 - [ ] GitHub repo setup (branch protection, PR template)
 
 ## Phase 1: Core Food Logging
-- [ ] User authentication (sign up, log in, sessions)
+- [x] User authentication (sign up, log in, sessions)
 - [ ] Food database schema (foods, servings, nutrients)
 - [ ] Manual food entry (name, calories, macros)
 - [ ] Daily food log (add, edit, remove entries)
