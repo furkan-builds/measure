@@ -1,7 +1,7 @@
 services:
-  db:
+  postgres-database:
     image: postgres:17
-    container_name: measure-db
+    container_name: measure-postgres-database
     restart: unless-stopped
     ports:
       - "5432:5432"

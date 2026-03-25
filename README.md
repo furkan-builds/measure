@@ -48,7 +48,7 @@ pnpm install
 Start PostgreSQL:
 
 ```bash
-docker compose up -d
+pnpm docker:up
 ```
 
 Create `apps/api/.env` (or copy from the example):
@@ -74,8 +74,8 @@ pnpm dev --filter=api       # api only (http://localhost:3001)
 ### Docker
 
 ```bash
-docker compose up -d        # start PostgreSQL in the background
-docker compose down          # stop PostgreSQL
+pnpm docker:up               # start PostgreSQL in the background
+pnpm docker:down             # stop PostgreSQL
 docker compose down -v       # stop and wipe database data
 ```
 
