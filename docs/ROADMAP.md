@@ -11,7 +11,7 @@ Track of planned features and infrastructure for Measure.
 - [x] Scaffold `apps/mobile` (Expo)
 - [x] Scaffold `packages/shared`, `packages/db`, `packages/ui`
 - [x] Set up PostgreSQL + Drizzle ORM with initial schema
-- [ ] Set up Vitest for web/shared, Jest for api/mobile
+- [x] Set up Vitest for web/shared, Jest for api/mobile
 - [ ] GitHub repo setup (branch protection, PR template)
 
 ## Phase 1: Core Food Logging
