@@ -105,7 +105,16 @@ Use `import type` when importing only types.
 import type { Food } from "@measure/shared/schemas/food";
 ```
 
-## Branch Naming
+## Git Workflow
+
+Never commit directly to `main`. All changes go through branches and pull requests.
+
+1. Create a branch from `main`: `git checkout -b feat/my-feature`
+2. Make changes and commit
+3. Push and open a PR: `git push -u origin feat/my-feature`
+4. PR is reviewed, then squash merged to `main`
+
+### Branch naming
 
 Use prefixed branch names:
 
@@ -114,7 +123,7 @@ Use prefixed branch names:
 - `chore/` — tooling, deps, config (e.g., `chore/update-drizzle`)
 - `docs/` — documentation changes
 
-## Pull Requests
+### Pull requests
 
 - Keep PRs focused on a single change
 - Include a summary and test plan in the PR description
