@@ -82,7 +82,8 @@ A **pre-push** hook (via Husky) runs `pnpm lint`, `pnpm typecheck`, and `pnpm te
 
 ## Branch and PR Conventions
 
-- Branch naming: `feat/`, `fix/`, `chore/`, `docs/` prefixes (e.g., `feat/food-search`)
+- Branch naming: `feature/`, `fix/`, `chore/`, `docs/` prefixes (e.g., `feature/food-search`)
+- Commit messages: use conventional commit prefixes — `feature:`, `fix:`, `chore:`, `docs:`, `refactor:`, `test:`, `style:`, `perf:`, `ci:` (e.g., `feature: add food search endpoint`)
 - PRs require a summary and test plan
 - Squash merge to `main`
 
