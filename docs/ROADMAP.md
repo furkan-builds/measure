@@ -18,7 +18,7 @@ Track of planned features and infrastructure for Measure.
 
 ### API
 - [x] User authentication (sign up, log in, sessions)
-- [ ] Food database schema (foods, servings, nutrients)
+- [x] Food database schema (foods, servings, nutrients)
 - [ ] Manual food entry (name, calories, macros)
 - [ ] Daily food log (add, edit, remove entries)
 - [ ] Daily calorie/macro summary
