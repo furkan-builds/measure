@@ -16,7 +16,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Database:** PostgreSQL + Drizzle ORM
 - **Validation:** Zod (shared schemas used by tRPC, forms, and DB)
 - **Linting/Formatting:** Biome
-- **Testing:** Vitest (web/api/shared/ui/db), Jest (mobile)
+- **Testing:** Vitest (web/api/shared/ui/database), Jest (mobile)
 
 ## Repository Structure
 
@@ -27,7 +27,7 @@ apps/
   api/          — Express + tRPC API server
 packages/
   shared/       — Shared types, Zod schemas, constants
-  db/           — Drizzle schema, migrations, database client
+  database/           — Drizzle schema, migrations, database client
   ui/           — Shared React component library (web + mobile where possible)
 ```
 
@@ -46,7 +46,7 @@ pnpm format                     # biome format --write
 pnpm test                       # run all tests
 pnpm test:web                   # run tests for web only
 pnpm test:api                   # run tests for api only
-pnpm test:db                    # run tests for db only
+pnpm test:database              # run tests for database only
 pnpm test:shared                # run tests for shared only
 pnpm test:ui                    # run tests for ui only
 pnpm test:mobile                # run tests for mobile only
@@ -58,9 +58,9 @@ pnpm typecheck                  # tsc --noEmit across all packages
 ```bash
 pnpm docker:up                  # start PostgreSQL
 pnpm docker:down                # stop PostgreSQL
-pnpm --filter=@measure/db generate  # generate Drizzle migration from schema changes
-pnpm --filter=@measure/db migrate   # apply pending migrations
-pnpm --filter=@measure/db studio    # open Drizzle Studio (DB browser)
+pnpm --filter=@measure/database generate  # generate Drizzle migration from schema changes
+pnpm --filter=@measure/database migrate   # apply pending migrations
+pnpm --filter=@measure/database studio    # open Drizzle Studio (DB browser)
 ```
 
 ## Code Style
@@ -79,7 +79,7 @@ These conventions are enforced by Biome where possible (see `biome.json`). Follo
 
 - **tRPC routers** in `apps/api/src/routers/` define the API. The tRPC client is consumed by both web and mobile apps, providing full type inference from DB schema → API → UI with no codegen step.
 - **Zod schemas** in `packages/shared/` are the single source of truth for validation. They are used by tRPC input validation, Drizzle schema definitions, and client-side form validation.
-- **Drizzle schema** in `packages/db/src/schema/` defines all database tables. Migrations are generated from schema diffs, not hand-written.
+- **Drizzle schema** in `packages/database/src/schema/` defines all database tables. Migrations are generated from schema diffs, not hand-written.
 - The `packages/ui/` library contains presentational components. Platform-specific components use `.web.tsx` / `.native.tsx` file extensions where needed.
 
 ## Git Hooks

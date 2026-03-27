@@ -7,8 +7,10 @@ import { weightLog } from "./schema/weight";
 const connectionString = process.env.DATABASE_URL ?? "";
 const client = postgres(connectionString);
 
-const db = drizzle(client, { schema: { users, foods, servings, foodLog, mealEnum, weightLog } });
-type Database = typeof db;
+const database = drizzle(client, {
+	schema: { users, foods, servings, foodLog, mealEnum, weightLog },
+});
+type Database = typeof database;
 
-export { db };
+export { database };
 export type { Database };

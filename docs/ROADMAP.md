@@ -9,7 +9,7 @@ Track of planned features and infrastructure for Measure.
 - [x] Scaffold `apps/web` (Vite + React)
 - [x] Scaffold `apps/api` (Express + tRPC)
 - [x] Scaffold `apps/mobile` (Expo)
-- [x] Scaffold `packages/shared`, `packages/db`, `packages/ui`
+- [x] Scaffold `packages/shared`, `packages/database`, `packages/ui`
 - [x] Set up PostgreSQL + Drizzle ORM with initial schema
 - [x] Set up Vitest for web/shared, Jest for api/mobile
 - [x] GitHub repo setup (branch protection, PR template)

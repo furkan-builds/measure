@@ -12,7 +12,7 @@
 		"test:watch": "vitest"
 	},
 	"dependencies": {
-		"@measure/db": "workspace:*",
+		"@measure/database": "workspace:*",
 		"@measure/shared": "workspace:*",
 		"@trpc/server": "^11.0.0",
 		"argon2": "^0.44.0",

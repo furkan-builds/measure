@@ -16,7 +16,7 @@
 		"test:api": "turbo test --filter=@measure/api",
 		"test:mobile": "turbo test --filter=@measure/mobile",
 		"test:shared": "turbo test --filter=@measure/shared",
-		"test:db": "turbo test --filter=@measure/db",
+		"test:database": "turbo test --filter=@measure/database",
 		"test:ui": "turbo test --filter=@measure/ui",
 		"typecheck": "turbo typecheck",
 		"docker:up": "docker compose up -d",

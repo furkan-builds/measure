@@ -1,5 +1,5 @@
-import { db } from "@measure/db/client";
-import { users } from "@measure/db/schema/users";
+import { database } from "@measure/database/client";
+import { users } from "@measure/database/schema/users";
 import { loginSchema } from "@measure/shared/schemas/auth";
 import { createUserSchema } from "@measure/shared/schemas/user";
 import { TRPCError } from "@trpc/server";
@@ -19,7 +19,7 @@ const TOKEN_COOKIE_OPTIONS = {
 const authRouter = router({
 	// Creates a new user account, hashes the password, and sets a JWT cookie.
 	signup: publicProcedure.input(createUserSchema).mutation(async ({ input, ctx }) => {
-		const existing = await db
+		const existing = await database
 			.select({ id: users.id })
 			.from(users)
 			.where(eq(users.email, input.email));
@@ -30,7 +30,7 @@ const authRouter = router({
 
 		const passwordHash = await hashPassword(input.password);
 
-		const [user] = await db
+		const [user] = await database
 			.insert(users)
 			.values({
 				email: input.email,
@@ -47,7 +47,7 @@ const authRouter = router({
 
 	// Validates credentials and sets a JWT cookie.
 	login: publicProcedure.input(loginSchema).mutation(async ({ input, ctx }) => {
-		const [user] = await db.select().from(users).where(eq(users.email, input.email));
+		const [user] = await database.select().from(users).where(eq(users.email, input.email));
 
 		if (!user) {
 			throw new TRPCError({ code: "UNAUTHORIZED", message: "Invalid email or password" });
@@ -73,7 +73,7 @@ const authRouter = router({
 
 	// Returns the current authenticated user's info.
 	me: protectedProcedure.query(async ({ ctx }) => {
-		const [user] = await db
+		const [user] = await database
 			.select({ id: users.id, email: users.email, name: users.name })
 			.from(users)
 			.where(eq(users.id, ctx.userId));

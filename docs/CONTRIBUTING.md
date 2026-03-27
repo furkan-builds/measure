@@ -109,7 +109,7 @@ import type { Food } from "@measure/shared/schemas/food";
 
 ### Frameworks
 
-- **Vitest** for web, api, shared, ui, and db packages
+- **Vitest** for web, api, shared, ui, and database packages
 - **Jest** (with `jest-expo` preset) for the mobile app
 
 ### Test file location
@@ -173,7 +173,7 @@ Use prefixed branch names:
 
 ## Updating a Shared Package
 
-When you change code in a shared package (`packages/shared`, `packages/db`, `packages/ui`), here's what happens:
+When you change code in a shared package (`packages/shared`, `packages/database`, `packages/ui`), here's what happens:
 
 ### During development
 
