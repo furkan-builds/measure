@@ -36,14 +36,20 @@ packages/
 ```bash
 pnpm install                    # install all dependencies
 pnpm dev                        # run all apps in dev mode (turborepo)
-pnpm dev --filter=web           # run only the web app
-pnpm dev --filter=api           # run only the API server
+pnpm dev:web                    # run only the web app
+pnpm dev:api                    # run only the API server
+pnpm dev:mobile                 # run only the mobile app
 pnpm build                      # build all packages/apps
 pnpm lint                       # biome check across all packages
 pnpm lint:fix                   # biome check --write
 pnpm format                     # biome format --write
 pnpm test                       # run all tests
-pnpm test --filter=web          # run tests for web only
+pnpm test:web                   # run tests for web only
+pnpm test:api                   # run tests for api only
+pnpm test:db                    # run tests for db only
+pnpm test:shared                # run tests for shared only
+pnpm test:ui                    # run tests for ui only
+pnpm test:mobile                # run tests for mobile only
 pnpm typecheck                  # tsc --noEmit across all packages
 ```
 
@@ -52,9 +58,9 @@ pnpm typecheck                  # tsc --noEmit across all packages
 ```bash
 pnpm docker:up                  # start PostgreSQL
 pnpm docker:down                # stop PostgreSQL
-pnpm --filter=db generate       # generate Drizzle migration from schema changes
-pnpm --filter=db migrate        # apply pending migrations
-pnpm --filter=db studio         # open Drizzle Studio (DB browser)
+pnpm --filter=@measure/db generate  # generate Drizzle migration from schema changes
+pnpm --filter=@measure/db migrate   # apply pending migrations
+pnpm --filter=@measure/db studio    # open Drizzle Studio (DB browser)
 ```
 
 ## Code Style
