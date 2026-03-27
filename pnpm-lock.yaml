@@ -26,9 +26,9 @@ importers:
 
   apps/api:
     dependencies:
-      '@measure/db':
+      '@measure/database':
         specifier: workspace:*
-        version: link:../../packages/db
+        version: link:../../packages/database
       '@measure/shared':
         specifier: workspace:*
         version: link:../../packages/shared
@@ -165,7 +165,7 @@ importers:
         specifier: ^3.1.0
         version: 3.2.4(@types/node@25.5.0)(jsdom@20.0.3)(lightningcss@1.27.0)(terser@5.46.1)(tsx@4.21.0)
 
-  packages/db:
+  packages/database:
     dependencies:
       drizzle-orm:
         specifier: ^0.38.0
