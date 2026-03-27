@@ -1,16 +1,28 @@
 import { describe, expect, it } from "vitest";
-import { foodLogEntrySchema, foodSchema } from "../food";
+import { detailedFoodLogSchema, foodSchema, quickFoodLogSchema, servingSchema } from "../food";
 
 describe("foodSchema", () => {
 	it("accepts valid food data", () => {
 		const result = foodSchema.safeParse({
 			name: "Chicken Breast",
-			calories: 165,
-			protein: 31,
-			carbs: 0,
-			fat: 3.6,
-			servingSize: 100,
-			servingUnit: "g",
+			caloriesPer100g: 165,
+			proteinPer100g: 31,
+			carbsPer100g: 0,
+			fatPer100g: 3.6,
+		});
+
+		expect(result.success).toBe(true);
+	});
+
+	it("accepts food with optional brand and fiber", () => {
+		const result = foodSchema.safeParse({
+			name: "Oats",
+			brand: "Quaker",
+			caloriesPer100g: 389,
+			proteinPer100g: 16.9,
+			carbsPer100g: 66.3,
+			fatPer100g: 6.9,
+			fiberPer100g: 10.6,
 		});
 
 		expect(result.success).toBe(true);
@@ -19,12 +31,10 @@ describe("foodSchema", () => {
 	it("rejects negative calories", () => {
 		const result = foodSchema.safeParse({
 			name: "Invalid",
-			calories: -10,
-			protein: 0,
-			carbs: 0,
-			fat: 0,
-			servingSize: 100,
-			servingUnit: "g",
+			caloriesPer100g: -10,
+			proteinPer100g: 0,
+			carbsPer100g: 0,
+			fatPer100g: 0,
 		});
 
 		expect(result.success).toBe(false);
@@ -33,23 +43,102 @@ describe("foodSchema", () => {
 	it("rejects empty name", () => {
 		const result = foodSchema.safeParse({
 			name: "",
-			calories: 100,
-			protein: 10,
-			carbs: 10,
-			fat: 5,
-			servingSize: 100,
-			servingUnit: "g",
+			caloriesPer100g: 100,
+			proteinPer100g: 10,
+			carbsPer100g: 10,
+			fatPer100g: 5,
 		});
 
 		expect(result.success).toBe(false);
 	});
 });
 
-describe("foodLogEntrySchema", () => {
-	it("accepts valid log entry", () => {
-		const result = foodLogEntrySchema.safeParse({
+describe("servingSchema", () => {
+	it("accepts valid serving data", () => {
+		const result = servingSchema.safeParse({
 			foodId: "550e8400-e29b-41d4-a716-446655440000",
-			servings: 1.5,
+			label: "1 cup",
+			amountGrams: 240,
+		});
+
+		expect(result.success).toBe(true);
+	});
+
+	it("rejects zero amountGrams", () => {
+		const result = servingSchema.safeParse({
+			foodId: "550e8400-e29b-41d4-a716-446655440000",
+			label: "1 slice",
+			amountGrams: 0,
+		});
+
+		expect(result.success).toBe(false);
+	});
+
+	it("rejects empty label", () => {
+		const result = servingSchema.safeParse({
+			foodId: "550e8400-e29b-41d4-a716-446655440000",
+			label: "",
+			amountGrams: 100,
+		});
+
+		expect(result.success).toBe(false);
+	});
+});
+
+describe("quickFoodLogSchema", () => {
+	it("accepts a quick add with just calories", () => {
+		const result = quickFoodLogSchema.safeParse({
+			label: "Afternoon snack",
+			calories: 350,
+			meal: "snack",
+			loggedAt: "2026-03-25T14:00:00Z",
+		});
+
+		expect(result.success).toBe(true);
+	});
+
+	it("accepts a quick add with optional macros", () => {
+		const result = quickFoodLogSchema.safeParse({
+			label: "Protein shake",
+			calories: 200,
+			protein: 30,
+			carbs: 10,
+			fat: 5,
+			meal: "snack",
+			loggedAt: "2026-03-25T16:00:00Z",
+		});
+
+		expect(result.success).toBe(true);
+	});
+
+	it("rejects missing label", () => {
+		const result = quickFoodLogSchema.safeParse({
+			calories: 100,
+			meal: "lunch",
+			loggedAt: "2026-03-25T12:00:00Z",
+		});
+
+		expect(result.success).toBe(false);
+	});
+
+	it("rejects negative calories", () => {
+		const result = quickFoodLogSchema.safeParse({
+			label: "Bad entry",
+			calories: -50,
+			meal: "dinner",
+			loggedAt: "2026-03-25T18:00:00Z",
+		});
+
+		expect(result.success).toBe(false);
+	});
+});
+
+describe("detailedFoodLogSchema", () => {
+	it("accepts valid detailed log entry", () => {
+		const result = detailedFoodLogSchema.safeParse({
+			foodId: "550e8400-e29b-41d4-a716-446655440000",
+			servingId: "660e8400-e29b-41d4-a716-446655440000",
+			quantity: 1.5,
 			meal: "lunch",
 			loggedAt: "2026-03-25T12:00:00Z",
 		});
@@ -58,11 +147,24 @@ describe("foodLogEntrySchema", () => {
 	});
 
 	it("rejects invalid meal type", () => {
-		const result = foodLogEntrySchema.safeParse({
+		const result = detailedFoodLogSchema.safeParse({
 			foodId: "550e8400-e29b-41d4-a716-446655440000",
-			servings: 1,
+			servingId: "660e8400-e29b-41d4-a716-446655440000",
+			quantity: 1,
 			meal: "brunch",
 			loggedAt: "2026-03-25T12:00:00Z",
+		});
+
+		expect(result.success).toBe(false);
+	});
+
+	it("rejects zero quantity", () => {
+		const result = detailedFoodLogSchema.safeParse({
+			foodId: "550e8400-e29b-41d4-a716-446655440000",
+			servingId: "660e8400-e29b-41d4-a716-446655440000",
+			quantity: 0,
+			meal: "dinner",
+			loggedAt: "2026-03-25T18:00:00Z",
 		});
 
 		expect(result.success).toBe(false);
