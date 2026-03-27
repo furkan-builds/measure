@@ -90,8 +90,20 @@ A **pre-push** hook (via Husky) runs `pnpm lint`, `pnpm typecheck`, and `pnpm te
 
 - Branch naming: `feature/`, `fix/`, `chore/`, `docs/` prefixes (e.g., `feature/food-search`)
 - Commit messages: use conventional commit prefixes — `feature:`, `fix:`, `chore:`, `docs:`, `refactor:`, `test:`, `style:`, `perf:`, `ci:` (e.g., `feature: add food search endpoint`)
+- PR titles use the same conventional commit prefixes as commit messages
 - PRs require a summary and test plan
+- No "Generated with Claude Code" or Co-Authored-By lines in PRs or commits
 - Squash merge to `main`
+- Delete local branches after merging
+- Never commit directly to `main` — always use a feature branch + PR
+
+## Claude Code Preferences
+
+- Use TypeScript for all files including configs — no `.js` files
+- Explain what you're doing and why at each step — the user wants to learn
+- Keep responses concise — no trailing summaries of what was just done
+- Always use `drizzle-kit generate` for migrations — never write migration SQL by hand
+- Leave a blank line before `expect()` calls in tests
 
 ## Environment Variables
 
