@@ -95,6 +95,43 @@
 					}
 				}
 			]
+		},
+		{
+			"name": "Food",
+			"item": [
+				{
+					"name": "Create Food",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Banana\",\n\t\"brand\": \"Generic\",\n\t\"caloriesPer100g\": 89,\n\t\"proteinPer100g\": 1.1,\n\t\"carbsPer100g\": 22.8,\n\t\"fatPer100g\": 0.3,\n\t\"fiberPer100g\": 2.6\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/food.create",
+							"host": ["{{baseUrl}}"],
+							"path": ["food.create"]
+						}
+					}
+				},
+				{
+					"name": "List Foods",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/food.list",
+							"host": ["{{baseUrl}}"],
+							"path": ["food.list"]
+						}
+					}
+				}
+			]
 		}
 	]
 }
