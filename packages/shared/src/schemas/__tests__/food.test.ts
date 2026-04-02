@@ -1,5 +1,13 @@
 import { describe, expect, it } from "vitest";
-import { detailedFoodLogSchema, foodSchema, quickFoodLogSchema, servingSchema } from "../food";
+import {
+	deleteFoodLogSchema,
+	detailedFoodLogSchema,
+	foodSchema,
+	listFoodLogSchema,
+	quickFoodLogSchema,
+	servingSchema,
+	updateFoodLogSchema,
+} from "../food";
 
 describe("foodSchema", () => {
 	it("accepts valid food data", () => {
@@ -168,5 +176,83 @@ describe("detailedFoodLogSchema", () => {
 		});
 
 		expect(result.success).toBe(false);
+	});
+});
+
+describe("updateFoodLogSchema", () => {
+	it("accepts a partial update with just calories", () => {
+		const result = updateFoodLogSchema.safeParse({
+			id: "550e8400-e29b-41d4-a716-446655440000",
+			calories: 300,
+		});
+
+		expect(result.success).toBe(true);
+	});
+
+	it("accepts a partial update with multiple fields", () => {
+		const result = updateFoodLogSchema.safeParse({
+			id: "550e8400-e29b-41d4-a716-446655440000",
+			label: "Updated snack",
+			calories: 250,
+			meal: "dinner",
+		});
+
+		expect(result.success).toBe(true);
+	});
+
+	it("rejects missing id", () => {
+		const result = updateFoodLogSchema.safeParse({
+			calories: 300,
+		});
+
+		expect(result.success).toBe(false);
+	});
+
+	it("rejects invalid id", () => {
+		const result = updateFoodLogSchema.safeParse({
+			id: "not-a-uuid",
+			calories: 300,
+		});
+
+		expect(result.success).toBe(false);
+	});
+});
+
+describe("deleteFoodLogSchema", () => {
+	it("accepts a valid id", () => {
+		const result = deleteFoodLogSchema.safeParse({
+			id: "550e8400-e29b-41d4-a716-446655440000",
+		});
+
+		expect(result.success).toBe(true);
+	});
+
+	it("rejects an invalid id", () => {
+		const result = deleteFoodLogSchema.safeParse({
+			id: "not-a-uuid",
+		});
+
+		expect(result.success).toBe(false);
+	});
+});
+
+describe("listFoodLogSchema", () => {
+	it("accepts a date string", () => {
+		const result = listFoodLogSchema.safeParse({
+			date: "2026-03-25",
+		});
+
+		expect(result.success).toBe(true);
+	});
+
+	it("coerces a string to a Date", () => {
+		const result = listFoodLogSchema.safeParse({
+			date: "2026-03-25T00:00:00Z",
+		});
+
+		expect(result.success).toBe(true);
+		if (result.success) {
+			expect(result.data.date).toBeInstanceOf(Date);
+		}
 	});
 });

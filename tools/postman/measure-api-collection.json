@@ -132,6 +132,112 @@
 					}
 				}
 			]
+		},
+		{
+			"name": "Food Log",
+			"item": [
+				{
+					"name": "Quick Add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"label\": \"Afternoon snack\",\n\t\"calories\": 350,\n\t\"protein\": 10,\n\t\"carbs\": 40,\n\t\"fat\": 15,\n\t\"meal\": \"snack\",\n\t\"loggedAt\": \"2026-04-02T14:00:00Z\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/foodLog.quickAdd",
+							"host": ["{{baseUrl}}"],
+							"path": ["foodLog.quickAdd"]
+						}
+					}
+				},
+				{
+					"name": "Log (Detailed)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"foodId\": \"REPLACE_WITH_FOOD_ID\",\n\t\"servingId\": \"REPLACE_WITH_SERVING_ID\",\n\t\"quantity\": 1,\n\t\"meal\": \"lunch\",\n\t\"loggedAt\": \"2026-04-02T12:00:00Z\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/foodLog.log",
+							"host": ["{{baseUrl}}"],
+							"path": ["foodLog.log"]
+						}
+					}
+				},
+				{
+					"name": "Edit Entry",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"REPLACE_WITH_ENTRY_ID\",\n\t\"calories\": 400,\n\t\"meal\": \"dinner\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/foodLog.edit",
+							"host": ["{{baseUrl}}"],
+							"path": ["foodLog.edit"]
+						}
+					}
+				},
+				{
+					"name": "Remove Entry",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"REPLACE_WITH_ENTRY_ID\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/foodLog.remove",
+							"host": ["{{baseUrl}}"],
+							"path": ["foodLog.remove"]
+						}
+					}
+				},
+				{
+					"name": "List by Date",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/foodLog.list?input={\"date\":\"2026-04-02\"}",
+							"host": ["{{baseUrl}}"],
+							"path": ["foodLog.list"],
+							"query": [
+								{
+									"key": "input",
+									"value": "{\"date\":\"2026-04-02\"}"
+								}
+							]
+						}
+					}
+				}
+			]
 		}
 	]
 }

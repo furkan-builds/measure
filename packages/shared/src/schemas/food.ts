@@ -38,10 +38,49 @@ const detailedFoodLogSchema = z.object({
 	loggedAt: z.coerce.date(),
 });
 
+const updateFoodLogSchema = z.object({
+	id: z.string().uuid(),
+	label: z.string().min(1).max(200).optional(),
+	calories: z.number().nonnegative().optional(),
+	protein: z.number().nonnegative().nullable().optional(),
+	carbs: z.number().nonnegative().nullable().optional(),
+	fat: z.number().nonnegative().nullable().optional(),
+	meal: z.enum(mealValues).optional(),
+	loggedAt: z.coerce.date().optional(),
+});
+
+const deleteFoodLogSchema = z.object({
+	id: z.string().uuid(),
+});
+
+const listFoodLogSchema = z.object({
+	date: z.coerce.date(),
+});
+
 type Food = z.infer<typeof foodSchema>;
 type Serving = z.infer<typeof servingSchema>;
 type QuickFoodLogEntry = z.infer<typeof quickFoodLogSchema>;
 type DetailedFoodLogEntry = z.infer<typeof detailedFoodLogSchema>;
+type UpdateFoodLogEntry = z.infer<typeof updateFoodLogSchema>;
+type DeleteFoodLogEntry = z.infer<typeof deleteFoodLogSchema>;
+type ListFoodLogQuery = z.infer<typeof listFoodLogSchema>;
 
-export { mealValues, foodSchema, servingSchema, quickFoodLogSchema, detailedFoodLogSchema };
-export type { Food, Serving, QuickFoodLogEntry, DetailedFoodLogEntry };
+export {
+	mealValues,
+	foodSchema,
+	servingSchema,
+	quickFoodLogSchema,
+	detailedFoodLogSchema,
+	updateFoodLogSchema,
+	deleteFoodLogSchema,
+	listFoodLogSchema,
+};
+export type {
+	Food,
+	Serving,
+	QuickFoodLogEntry,
+	DetailedFoodLogEntry,
+	UpdateFoodLogEntry,
+	DeleteFoodLogEntry,
+	ListFoodLogQuery,
+};
