@@ -58,9 +58,9 @@ pnpm typecheck                  # tsc --noEmit across all packages
 ```bash
 pnpm docker:up                  # start PostgreSQL
 pnpm docker:down                # stop PostgreSQL
-pnpm --filter=@measure/database generate  # generate Drizzle migration from schema changes
-pnpm --filter=@measure/database migrate   # apply pending migrations
-pnpm --filter=@measure/database studio    # open Drizzle Studio (DB browser)
+pnpm database:generate          # generate Drizzle migration from schema changes
+pnpm database:migrate           # apply pending migrations
+pnpm database:studio            # open Drizzle Studio (DB browser)
 ```
 
 ## Code Style

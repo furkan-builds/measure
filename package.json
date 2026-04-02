@@ -19,6 +19,9 @@
 		"test:database": "turbo test --filter=@measure/database",
 		"test:ui": "turbo test --filter=@measure/ui",
 		"typecheck": "turbo typecheck",
+		"database:migrate": "pnpm --filter=@measure/database migrate",
+		"database:generate": "pnpm --filter=@measure/database generate",
+		"database:studio": "pnpm --filter=@measure/database studio",
 		"docker:up": "docker compose up -d",
 		"docker:down": "docker compose down",
 		"prepare": "husky"
