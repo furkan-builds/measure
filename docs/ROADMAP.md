@@ -21,8 +21,8 @@ Track of planned features and infrastructure for Measure.
 - [x] Food database schema (foods, servings, nutrients)
 - [x] Manual food entry (name, calories, macros)
 - [x] Daily food log (add, edit, remove entries)
-- [ ] Daily calorie/macro summary
-- [ ] Date navigation (view past days)
+- [x] Daily calorie/macro summary
+- [x] Date navigation (view past days)
 
 ### Frontend
 - [ ] Sign up / log in pages
