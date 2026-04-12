@@ -57,6 +57,15 @@ const listFoodLogSchema = z.object({
 	date: z.coerce.date(),
 });
 
+const dailySummarySchema = z.object({
+	date: z.coerce.date(),
+});
+
+const loggedDatesSchema = z.object({
+	from: z.coerce.date(),
+	to: z.coerce.date(),
+});
+
 type Food = z.infer<typeof foodSchema>;
 type Serving = z.infer<typeof servingSchema>;
 type QuickFoodLogEntry = z.infer<typeof quickFoodLogSchema>;
@@ -64,6 +73,8 @@ type DetailedFoodLogEntry = z.infer<typeof detailedFoodLogSchema>;
 type UpdateFoodLogEntry = z.infer<typeof updateFoodLogSchema>;
 type DeleteFoodLogEntry = z.infer<typeof deleteFoodLogSchema>;
 type ListFoodLogQuery = z.infer<typeof listFoodLogSchema>;
+type DailySummaryQuery = z.infer<typeof dailySummarySchema>;
+type LoggedDatesQuery = z.infer<typeof loggedDatesSchema>;
 
 export {
 	mealValues,
@@ -74,6 +85,8 @@ export {
 	updateFoodLogSchema,
 	deleteFoodLogSchema,
 	listFoodLogSchema,
+	dailySummarySchema,
+	loggedDatesSchema,
 };
 export type {
 	Food,
@@ -83,4 +96,6 @@ export type {
 	UpdateFoodLogEntry,
 	DeleteFoodLogEntry,
 	ListFoodLogQuery,
+	DailySummaryQuery,
+	LoggedDatesQuery,
 };

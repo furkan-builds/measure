@@ -1,9 +1,11 @@
 import { describe, expect, it } from "vitest";
 import {
+	dailySummarySchema,
 	deleteFoodLogSchema,
 	detailedFoodLogSchema,
 	foodSchema,
 	listFoodLogSchema,
+	loggedDatesSchema,
 	quickFoodLogSchema,
 	servingSchema,
 	updateFoodLogSchema,
@@ -254,5 +256,72 @@ describe("listFoodLogSchema", () => {
 		if (result.success) {
 			expect(result.data.date).toBeInstanceOf(Date);
 		}
+	});
+});
+
+describe("dailySummarySchema", () => {
+	it("accepts a date string", () => {
+		const result = dailySummarySchema.safeParse({
+			date: "2026-03-25",
+		});
+
+		expect(result.success).toBe(true);
+	});
+
+	it("coerces a string to a Date", () => {
+		const result = dailySummarySchema.safeParse({
+			date: "2026-03-25T00:00:00Z",
+		});
+
+		expect(result.success).toBe(true);
+		if (result.success) {
+			expect(result.data.date).toBeInstanceOf(Date);
+		}
+	});
+
+	it("rejects missing date", () => {
+		const result = dailySummarySchema.safeParse({});
+
+		expect(result.success).toBe(false);
+	});
+});
+
+describe("loggedDatesSchema", () => {
+	it("accepts valid from and to dates", () => {
+		const result = loggedDatesSchema.safeParse({
+			from: "2026-03-01",
+			to: "2026-03-31",
+		});
+
+		expect(result.success).toBe(true);
+	});
+
+	it("coerces strings to Dates", () => {
+		const result = loggedDatesSchema.safeParse({
+			from: "2026-03-01T00:00:00Z",
+			to: "2026-03-31T00:00:00Z",
+		});
+
+		expect(result.success).toBe(true);
+		if (result.success) {
+			expect(result.data.from).toBeInstanceOf(Date);
+			expect(result.data.to).toBeInstanceOf(Date);
+		}
+	});
+
+	it("rejects missing from", () => {
+		const result = loggedDatesSchema.safeParse({
+			to: "2026-03-31",
+		});
+
+		expect(result.success).toBe(false);
+	});
+
+	it("rejects missing to", () => {
+		const result = loggedDatesSchema.safeParse({
+			from: "2026-03-01",
+		});
+
+		expect(result.success).toBe(false);
 	});
 });

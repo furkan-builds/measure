@@ -1,14 +1,16 @@
 import { database } from "@measure/database/client";
 import { foodLog, foods, servings } from "@measure/database/schema/foods";
 import {
+	dailySummarySchema,
 	deleteFoodLogSchema,
 	detailedFoodLogSchema,
 	listFoodLogSchema,
+	loggedDatesSchema,
 	quickFoodLogSchema,
 	updateFoodLogSchema,
 } from "@measure/shared/schemas/food";
 import { TRPCError } from "@trpc/server";
-import { and, eq, gte, lt } from "drizzle-orm";
+import { and, count, eq, gte, lt, sql, sum } from "drizzle-orm";
 import { protectedProcedure, router } from "../trpc";
 
 // Adds one day to a Date, returning a new Date.
@@ -143,6 +145,65 @@ const foodLogRouter = router({
 			);
 
 		return entries;
+	}),
+
+	// Returns aggregated calorie and macro totals for a given date.
+	summary: protectedProcedure.input(dailySummarySchema).query(async ({ input, ctx }) => {
+		const startOfDay = new Date(input.date);
+		startOfDay.setHours(0, 0, 0, 0);
+		const endOfDay = addOneDay(startOfDay);
+
+		const [result] = await database
+			.select({
+				totalCalories: sum(foodLog.calories),
+				totalProtein: sum(foodLog.protein),
+				totalCarbs: sum(foodLog.carbs),
+				totalFat: sum(foodLog.fat),
+				entryCount: count(),
+			})
+			.from(foodLog)
+			.where(
+				and(
+					eq(foodLog.userId, ctx.userId),
+					gte(foodLog.loggedAt, startOfDay),
+					lt(foodLog.loggedAt, endOfDay),
+				),
+			);
+
+		return {
+			calories: Number(result.totalCalories) || 0,
+			protein: Number(result.totalProtein) || 0,
+			carbs: Number(result.totalCarbs) || 0,
+			fat: Number(result.totalFat) || 0,
+			entryCount: result.entryCount,
+		};
+	}),
+
+	// Returns distinct dates that have food log entries within a date range.
+	// Useful for calendar navigation — shows which days have data.
+	loggedDates: protectedProcedure.input(loggedDatesSchema).query(async ({ input, ctx }) => {
+		const from = new Date(input.from);
+		from.setHours(0, 0, 0, 0);
+		const to = new Date(input.to);
+		to.setHours(0, 0, 0, 0);
+		const toEnd = addOneDay(to);
+
+		const rows = await database
+			.select({
+				date: sql<string>`DATE(${foodLog.loggedAt} AT TIME ZONE 'UTC')`,
+			})
+			.from(foodLog)
+			.where(
+				and(
+					eq(foodLog.userId, ctx.userId),
+					gte(foodLog.loggedAt, from),
+					lt(foodLog.loggedAt, toEnd),
+				),
+			)
+			.groupBy(sql`DATE(${foodLog.loggedAt} AT TIME ZONE 'UTC')`)
+			.orderBy(sql`DATE(${foodLog.loggedAt} AT TIME ZONE 'UTC')`);
+
+		return rows.map((row) => row.date);
 	}),
 });
 

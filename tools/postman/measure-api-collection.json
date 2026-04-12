@@ -236,6 +236,40 @@
 							]
 						}
 					}
+				},
+				{
+					"name": "Daily Summary",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/foodLog.summary?input={\"date\":\"2026-04-02\"}",
+							"host": ["{{baseUrl}}"],
+							"path": ["foodLog.summary"],
+							"query": [
+								{
+									"key": "input",
+									"value": "{\"date\":\"2026-04-02\"}"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Logged Dates",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/foodLog.loggedDates?input={\"from\":\"2026-04-01\",\"to\":\"2026-04-30\"}",
+							"host": ["{{baseUrl}}"],
+							"path": ["foodLog.loggedDates"],
+							"query": [
+								{
+									"key": "input",
+									"value": "{\"from\":\"2026-04-01\",\"to\":\"2026-04-30\"}"
+								}
+							]
+						}
+					}
 				}
 			]
 		}
