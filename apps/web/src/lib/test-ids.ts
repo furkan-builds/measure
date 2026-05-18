@@ -30,6 +30,13 @@ const TEST_IDS = {
 		ENTRY_DELETE: "food-log-entry-delete",
 		EMPTY: "food-log-empty",
 	},
+	DATE_NAV: {
+		PREV: "date-nav-prev",
+		NEXT: "date-nav-next",
+		TODAY: "date-nav-today",
+		LABEL: "date-nav-label",
+		PICKER: "date-nav-picker",
+	},
 	QUICK_ADD: {
 		LABEL: "quick-add-label",
 		CALORIES: "quick-add-calories",
