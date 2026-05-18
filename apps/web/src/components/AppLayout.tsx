@@ -1,6 +1,6 @@
-import { Outlet, useNavigate } from "react-router-dom";
-import { useAuth } from "@/lib/auth";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/lib/auth";
+import { Outlet, useNavigate } from "react-router-dom";
 
 const AppLayout = () => {
 	const { user, logout } = useAuth();

@@ -1,10 +1,10 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { AppLayout } from "@/components/AppLayout";
 import { AuthProvider } from "@/lib/auth";
 import { DashboardPage } from "@/pages/DashboardPage";
 import { LoginPage } from "@/pages/LoginPage";
 import { SignupPage } from "@/pages/SignupPage";
 import { ProtectedRoute } from "@/routes/ProtectedRoute";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 const App = () => {
 	return (
