@@ -29,15 +29,15 @@ const AuthProvider = (authProviderProps: AuthProviderProps) => {
 	});
 
 	const login = trpc.auth.login.useMutation({
-		onSuccess: () => utils.auth.me.invalidate(),
+		onSuccess: (data) => utils.auth.me.setData(undefined, data),
 	});
 
 	const signup = trpc.auth.signup.useMutation({
-		onSuccess: () => utils.auth.me.invalidate(),
+		onSuccess: (data) => utils.auth.me.setData(undefined, data),
 	});
 
 	const logout = trpc.auth.logout.useMutation({
-		onSuccess: () => utils.auth.me.invalidate(),
+		onSuccess: () => utils.auth.me.setData(undefined, undefined),
 	});
 
 	const value: AuthContextValue = {
