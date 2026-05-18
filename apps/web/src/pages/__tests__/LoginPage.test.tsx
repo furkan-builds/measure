@@ -66,8 +66,12 @@ describe("LoginPage", () => {
 	it("shows a validation error for invalid email", async () => {
 		renderLoginPage();
 
-		fireEvent.change(screen.getByTestId(TEST_IDS.LOGIN.EMAIL), { target: { value: "not-an-email" } });
-		fireEvent.change(screen.getByTestId(TEST_IDS.LOGIN.PASSWORD), { target: { value: "password123" } });
+		fireEvent.change(screen.getByTestId(TEST_IDS.LOGIN.EMAIL), {
+			target: { value: "not-an-email" },
+		});
+		fireEvent.change(screen.getByTestId(TEST_IDS.LOGIN.PASSWORD), {
+			target: { value: "password123" },
+		});
 		fireEvent.submit(screen.getByTestId(TEST_IDS.LOGIN.SUBMIT));
 
 		expect(mockLogin.mutate).not.toHaveBeenCalled();
@@ -78,9 +82,11 @@ describe("LoginPage", () => {
 	});
 
 	it("displays server errors from the mutation", async () => {
-		mockLogin.mutate.mockImplementation((_data: unknown, options: { onError: (err: Error) => void }) => {
-			options.onError(new Error("Invalid email or password"));
-		});
+		mockLogin.mutate.mockImplementation(
+			(_data: unknown, options: { onError: (err: Error) => void }) => {
+				options.onError(new Error("Invalid email or password"));
+			},
+		);
 		const user = userEvent.setup();
 		renderLoginPage();
 
@@ -89,7 +95,9 @@ describe("LoginPage", () => {
 		await user.click(screen.getByTestId(TEST_IDS.LOGIN.SUBMIT));
 
 		await waitFor(() => {
-			expect(screen.getByTestId(TEST_IDS.LOGIN.ERROR)).toHaveTextContent("Invalid email or password");
+			expect(screen.getByTestId(TEST_IDS.LOGIN.ERROR)).toHaveTextContent(
+				"Invalid email or password",
+			);
 		});
 	});
 });

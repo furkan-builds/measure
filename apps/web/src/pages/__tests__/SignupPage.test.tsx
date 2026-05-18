@@ -88,7 +88,9 @@ describe("SignupPage", () => {
 
 		fireEvent.change(screen.getByTestId(TEST_IDS.SIGNUP.NAME), { target: { value: "Test User" } });
 		fireEvent.change(screen.getByTestId(TEST_IDS.SIGNUP.EMAIL), { target: { value: "bad-email" } });
-		fireEvent.change(screen.getByTestId(TEST_IDS.SIGNUP.PASSWORD), { target: { value: "password123" } });
+		fireEvent.change(screen.getByTestId(TEST_IDS.SIGNUP.PASSWORD), {
+			target: { value: "password123" },
+		});
 		fireEvent.submit(screen.getByTestId(TEST_IDS.SIGNUP.SUBMIT));
 
 		expect(mockSignup.mutate).not.toHaveBeenCalled();
@@ -99,9 +101,11 @@ describe("SignupPage", () => {
 	});
 
 	it("displays server errors from the mutation", async () => {
-		mockSignup.mutate.mockImplementation((_data: unknown, options: { onError: (err: Error) => void }) => {
-			options.onError(new Error("Email already in use"));
-		});
+		mockSignup.mutate.mockImplementation(
+			(_data: unknown, options: { onError: (err: Error) => void }) => {
+				options.onError(new Error("Email already in use"));
+			},
+		);
 		const user = userEvent.setup();
 		renderSignupPage();
 
