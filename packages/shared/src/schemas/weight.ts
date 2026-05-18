@@ -6,7 +6,23 @@ const weightEntrySchema = z.object({
 	loggedAt: z.coerce.date(),
 });
 
-type WeightEntry = z.infer<typeof weightEntrySchema>;
+const weightGoalSchema = z.object({
+	goalWeight: z.number().positive(),
+	goalWeightUnit: z.enum(["kg", "lb"]),
+});
 
-export { weightEntrySchema };
-export type { WeightEntry };
+const weightHistorySchema = z.object({
+	from: z.coerce.date(),
+	to: z.coerce.date(),
+});
+
+const deleteWeightEntrySchema = z.object({
+	id: z.string().uuid(),
+});
+
+type WeightEntry = z.infer<typeof weightEntrySchema>;
+type WeightGoal = z.infer<typeof weightGoalSchema>;
+type WeightHistory = z.infer<typeof weightHistorySchema>;
+
+export { weightEntrySchema, weightGoalSchema, weightHistorySchema, deleteWeightEntrySchema };
+export type { WeightEntry, WeightGoal, WeightHistory };
