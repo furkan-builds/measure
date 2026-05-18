@@ -25,7 +25,7 @@ Track of planned features and infrastructure for Measure.
 - [x] Date navigation (view past days)
 
 ### Frontend
-- [ ] Sign up / log in pages
+- [x] Sign up / log in pages
 - [ ] Food entry form
 - [ ] Daily food log view
 - [ ] Daily summary view
