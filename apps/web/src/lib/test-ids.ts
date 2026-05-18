@@ -47,6 +47,20 @@ const TEST_IDS = {
 		SUBMIT: "quick-add-submit",
 		ERROR: "quick-add-error",
 	},
+	WEIGHT: {
+		WEIGHT_INPUT: "weight-input",
+		UNIT_SELECT: "weight-unit-select",
+		SUBMIT: "weight-submit",
+		ERROR: "weight-error",
+		LATEST: "weight-latest",
+		GOAL: "weight-goal",
+		GOAL_INPUT: "weight-goal-input",
+		GOAL_UNIT_SELECT: "weight-goal-unit-select",
+		GOAL_SUBMIT: "weight-goal-submit",
+		CHART: "weight-chart",
+		HISTORY_ENTRY: "weight-history-entry",
+		HISTORY_DELETE: "weight-history-delete",
+	},
 };
 
 export { TEST_IDS };

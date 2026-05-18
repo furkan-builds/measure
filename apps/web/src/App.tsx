@@ -3,6 +3,7 @@ import { AuthProvider } from "@/lib/auth";
 import { DashboardPage } from "@/pages/DashboardPage";
 import { LoginPage } from "@/pages/LoginPage";
 import { SignupPage } from "@/pages/SignupPage";
+import { WeightPage } from "@/pages/WeightPage";
 import { ProtectedRoute } from "@/routes/ProtectedRoute";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
@@ -16,6 +17,7 @@ const App = () => {
 					<Route element={<ProtectedRoute />}>
 						<Route element={<AppLayout />}>
 							<Route path="/" element={<DashboardPage />} />
+							<Route path="/weight" element={<WeightPage />} />
 						</Route>
 					</Route>
 					<Route path="*" element={<Navigate to="/" replace />} />

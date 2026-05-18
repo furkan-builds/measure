@@ -15,6 +15,13 @@
       "when": 1774604902127,
       "tag": "0001_illegal_forgotten_one",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1779122023874,
+      "tag": "0002_sloppy_northstar",
+      "breakpoints": true
     }
   ]
 }
