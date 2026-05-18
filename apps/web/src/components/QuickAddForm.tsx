@@ -95,6 +95,7 @@ const QuickAddForm = (quickAddFormProps: QuickAddFormProps) => {
 								id="quick-add-calories"
 								type="number"
 								min="0"
+								step="any"
 								placeholder="0"
 								value={calories}
 								onChange={(e) => setCalories(e.target.value)}
@@ -123,6 +124,7 @@ const QuickAddForm = (quickAddFormProps: QuickAddFormProps) => {
 								id="quick-add-protein"
 								type="number"
 								min="0"
+								step="any"
 								placeholder="Optional"
 								value={protein}
 								onChange={(e) => setProtein(e.target.value)}
@@ -135,6 +137,7 @@ const QuickAddForm = (quickAddFormProps: QuickAddFormProps) => {
 								id="quick-add-carbs"
 								type="number"
 								min="0"
+								step="any"
 								placeholder="Optional"
 								value={carbs}
 								onChange={(e) => setCarbs(e.target.value)}
@@ -147,6 +150,7 @@ const QuickAddForm = (quickAddFormProps: QuickAddFormProps) => {
 								id="quick-add-fat"
 								type="number"
 								min="0"
+								step="any"
 								placeholder="Optional"
 								value={fat}
 								onChange={(e) => setFat(e.target.value)}
