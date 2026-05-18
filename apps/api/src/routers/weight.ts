@@ -8,11 +8,54 @@ import {
 	weightHistorySchema,
 } from "@measure/shared/schemas/weight";
 import { TRPCError } from "@trpc/server";
-import { and, desc, eq, gte, lte } from "drizzle-orm";
+import { and, desc, eq, gte, lt, lte, sql } from "drizzle-orm";
 import { protectedProcedure, router } from "../trpc";
 
+const startOfDay = (date: Date): Date => {
+	const d = new Date(date);
+	d.setHours(0, 0, 0, 0);
+	return d;
+};
+
+const endOfDay = (date: Date): Date => {
+	const d = new Date(date);
+	d.setHours(23, 59, 59, 999);
+	return d;
+};
+
 const weightRouter = router({
+	// Upserts a weight entry — one entry per day per user.
+	// If an entry already exists for the same day, it gets updated.
 	log: protectedProcedure.input(weightEntrySchema).mutation(async ({ input, ctx }) => {
+		const dayStart = startOfDay(input.loggedAt);
+		const dayEnd = endOfDay(input.loggedAt);
+
+		const [existing] = await database
+			.select()
+			.from(weightLog)
+			.where(
+				and(
+					eq(weightLog.userId, ctx.userId),
+					gte(weightLog.loggedAt, dayStart),
+					lte(weightLog.loggedAt, dayEnd),
+				),
+			)
+			.limit(1);
+
+		if (existing) {
+			const [updated] = await database
+				.update(weightLog)
+				.set({
+					weight: input.weight,
+					unit: input.unit,
+					loggedAt: input.loggedAt,
+				})
+				.where(eq(weightLog.id, existing.id))
+				.returning();
+
+			return updated;
+		}
+
 		const [entry] = await database
 			.insert(weightLog)
 			.values({

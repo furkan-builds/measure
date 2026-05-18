@@ -50,6 +50,32 @@ describe("weight.log", () => {
 		expect(result.unit).toBe("kg");
 		expect(result.userId).toBe(user.id);
 	});
+
+	it("updates the existing entry when logging twice on the same day", async () => {
+		const user = await createTestUser();
+		const caller = appRouter.createCaller(createMockContext({ userId: user.id }));
+
+		await caller.weight.log({
+			weight: 82,
+			unit: "kg",
+			loggedAt: new Date("2026-05-18T08:00:00Z"),
+		});
+
+		const updated = await caller.weight.log({
+			weight: 81.5,
+			unit: "kg",
+			loggedAt: new Date("2026-05-18T20:00:00Z"),
+		});
+
+		expect(updated.weight).toBe(81.5);
+
+		const entries = await caller.weight.list({
+			from: new Date("2026-05-18"),
+			to: new Date("2026-05-18T23:59:59Z"),
+		});
+
+		expect(entries).toHaveLength(1);
+	});
 });
 
 describe("weight.list", () => {
