@@ -72,6 +72,9 @@ importers:
       '@types/morgan':
         specifier: ^1.9.10
         version: 1.9.10
+      postgres:
+        specifier: ^3.4.8
+        version: 3.4.8
       tsx:
         specifier: ^4.19.0
         version: 4.21.0

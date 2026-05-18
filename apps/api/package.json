@@ -29,6 +29,7 @@
 		"@types/cors": "^2.8.17",
 		"@types/express": "^5.0.0",
 		"@types/morgan": "^1.9.10",
+		"postgres": "^3.4.8",
 		"tsx": "^4.19.0",
 		"typescript": "^5.7.0",
 		"vitest": "^3.1.0"
