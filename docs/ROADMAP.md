@@ -29,7 +29,7 @@ Track of planned features and infrastructure for Measure.
 - [x] Food entry form
 - [x] Daily food log view
 - [x] Daily summary view
-- [ ] Date navigation
+- [x] Date navigation
 
 ## Phase 2: Weight Tracking
 
