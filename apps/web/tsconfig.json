@@ -6,7 +6,11 @@
 		"lib": ["ES2022", "DOM", "DOM.Iterable"],
 		"composite": false,
 		"declaration": false,
-		"declarationMap": false
+		"declarationMap": false,
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./src/*"]
+		}
 	},
 	"include": ["src"]
 }
