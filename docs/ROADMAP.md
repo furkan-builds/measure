@@ -34,14 +34,14 @@ Track of planned features and infrastructure for Measure.
 ## Phase 2: Weight Tracking
 
 ### API
-- [ ] Weight log schema and endpoints
-- [ ] Log daily weight entries
-- [ ] Goal weight setting
+- [x] Weight log schema and endpoints
+- [x] Log daily weight entries
+- [x] Goal weight setting
 
 ### Frontend
-- [ ] Weight entry form
-- [ ] Weight history chart (trend over time)
-- [ ] Goal weight display
+- [x] Weight entry form
+- [x] Weight history chart (trend over time)
+- [x] Goal weight display
 
 ## Phase 3: Nutritional Detail
 
