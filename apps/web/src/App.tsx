@@ -2,6 +2,7 @@ import { AppLayout } from "@/components/AppLayout";
 import { AuthProvider } from "@/lib/auth";
 import { DashboardPage } from "@/pages/DashboardPage";
 import { LoginPage } from "@/pages/LoginPage";
+import { SettingsPage } from "@/pages/SettingsPage";
 import { SignupPage } from "@/pages/SignupPage";
 import { WeightPage } from "@/pages/WeightPage";
 import { ProtectedRoute } from "@/routes/ProtectedRoute";
@@ -18,6 +19,7 @@ const App = () => {
 						<Route element={<AppLayout />}>
 							<Route path="/" element={<DashboardPage />} />
 							<Route path="/weight" element={<WeightPage />} />
+							<Route path="/settings" element={<SettingsPage />} />
 						</Route>
 					</Route>
 					<Route path="*" element={<Navigate to="/" replace />} />

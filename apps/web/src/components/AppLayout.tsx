@@ -25,6 +25,9 @@ const AppLayout = () => {
 							<Link to="/weight" className="text-sm text-muted-foreground hover:text-foreground">
 								Weight
 							</Link>
+							<Link to="/settings" className="text-sm text-muted-foreground hover:text-foreground">
+								Settings
+							</Link>
 						</nav>
 					</div>
 					{user && (

@@ -1,6 +1,6 @@
 import { database } from "@measure/database/client";
 import { users } from "@measure/database/schema/users";
-import { loginSchema } from "@measure/shared/schemas/auth";
+import { changePasswordSchema, loginSchema } from "@measure/shared/schemas/auth";
 import { createUserSchema } from "@measure/shared/schemas/user";
 import { TRPCError } from "@trpc/server";
 import { eq } from "drizzle-orm";
@@ -70,6 +70,32 @@ const authRouter = router({
 		ctx.res.clearCookie("token", { path: "/" });
 		return { success: true };
 	}),
+
+	// Changes the authenticated user's password after verifying the current one.
+	changePassword: protectedProcedure
+		.input(changePasswordSchema)
+		.mutation(async ({ input, ctx }) => {
+			const [user] = await database.select().from(users).where(eq(users.id, ctx.userId));
+
+			if (!user) {
+				throw new TRPCError({ code: "NOT_FOUND", message: "User not found" });
+			}
+
+			const valid = await verifyPassword(input.currentPassword, user.passwordHash);
+
+			if (!valid) {
+				throw new TRPCError({ code: "UNAUTHORIZED", message: "Current password is incorrect" });
+			}
+
+			const newHash = await hashPassword(input.newPassword);
+
+			await database
+				.update(users)
+				.set({ passwordHash: newHash, updatedAt: new Date() })
+				.where(eq(users.id, ctx.userId));
+
+			return { success: true };
+		}),
 
 	// Returns the current authenticated user's info.
 	me: protectedProcedure.query(async ({ ctx }) => {
