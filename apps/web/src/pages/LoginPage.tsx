@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuth } from "@/lib/auth";
+import { TEST_IDS } from "@/lib/test-ids";
 import { loginSchema } from "@measure/shared/schemas/auth";
 import { type FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -48,6 +49,7 @@ const LoginPage = () => {
 								value={email}
 								onChange={(e) => setEmail(e.target.value)}
 								required
+								data-testid={TEST_IDS.LOGIN.EMAIL}
 							/>
 						</div>
 						<div className="flex flex-col gap-1.5">
@@ -58,15 +60,24 @@ const LoginPage = () => {
 								value={password}
 								onChange={(e) => setPassword(e.target.value)}
 								required
+								data-testid={TEST_IDS.LOGIN.PASSWORD}
 							/>
 						</div>
-						{error && <p className="text-sm text-destructive">{error}</p>}
-						<Button type="submit" disabled={login.isPending}>
+						{error && (
+							<p className="text-sm text-destructive" data-testid={TEST_IDS.LOGIN.ERROR}>
+								{error}
+							</p>
+						)}
+						<Button type="submit" disabled={login.isPending} data-testid={TEST_IDS.LOGIN.SUBMIT}>
 							{login.isPending ? "Logging in..." : "Log in"}
 						</Button>
 						<p className="text-center text-sm text-muted-foreground">
 							Don&apos;t have an account?{" "}
-							<Link to="/signup" className="text-foreground underline underline-offset-4">
+							<Link
+								to="/signup"
+								className="text-foreground underline underline-offset-4"
+								data-testid={TEST_IDS.LOGIN.SIGNUP_LINK}
+							>
 								Sign up
 							</Link>
 						</p>
