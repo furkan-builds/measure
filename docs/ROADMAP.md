@@ -26,9 +26,9 @@ Track of planned features and infrastructure for Measure.
 
 ### Frontend
 - [x] Sign up / log in pages
-- [ ] Food entry form
-- [ ] Daily food log view
-- [ ] Daily summary view
+- [x] Food entry form
+- [x] Daily food log view
+- [x] Daily summary view
 - [ ] Date navigation
 
 ## Phase 2: Weight Tracking
