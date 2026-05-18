@@ -9,9 +9,9 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
+import { evaluateMathExpression } from "@/lib/math";
 import { TEST_IDS } from "@/lib/test-ids";
 import { trpc } from "@/lib/trpc";
-import { evaluateMathExpression } from "@/lib/math";
 import { quickFoodLogSchema } from "@measure/shared/schemas/food";
 import { type FocusEvent, type FormEvent, useState } from "react";
 
