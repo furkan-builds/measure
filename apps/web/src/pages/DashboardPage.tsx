@@ -1,8 +1,15 @@
+import { DailySummary } from "@/components/DailySummary";
+import { FoodLogList } from "@/components/FoodLogList";
+import { QuickAddForm } from "@/components/QuickAddForm";
+
 const DashboardPage = () => {
+	const today = new Date();
+
 	return (
-		<div>
-			<h1 className="text-2xl font-bold">Dashboard</h1>
-			<p className="mt-2 text-muted-foreground">Your daily food log will appear here.</p>
+		<div className="flex flex-col gap-6">
+			<DailySummary date={today} />
+			<QuickAddForm date={today} />
+			<FoodLogList date={today} />
 		</div>
 	);
 };
