@@ -50,6 +50,14 @@ const TEST_IDS = {
 		SUBMIT: "quick-add-submit",
 		ERROR: "quick-add-error",
 	},
+	CHANGE_PASSWORD: {
+		CURRENT: "change-password-current",
+		NEW: "change-password-new",
+		CONFIRM: "change-password-confirm",
+		SUBMIT: "change-password-submit",
+		ERROR: "change-password-error",
+		SUCCESS: "change-password-success",
+	},
 	WEIGHT: {
 		WEIGHT_INPUT: "weight-input",
 		UNIT_SELECT: "weight-unit-select",

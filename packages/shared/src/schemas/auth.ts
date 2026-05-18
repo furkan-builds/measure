@@ -5,7 +5,13 @@ const loginSchema = z.object({
 	password: z.string().min(1),
 });
 
-type LoginInput = z.infer<typeof loginSchema>;
+const changePasswordSchema = z.object({
+	currentPassword: z.string().min(1),
+	newPassword: z.string().min(8).max(128),
+});
 
-export { loginSchema };
-export type { LoginInput };
+type LoginInput = z.infer<typeof loginSchema>;
+type ChangePasswordInput = z.infer<typeof changePasswordSchema>;
+
+export { loginSchema, changePasswordSchema };
+export type { LoginInput, ChangePasswordInput };
