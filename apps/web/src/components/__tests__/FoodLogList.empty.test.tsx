@@ -18,6 +18,9 @@ vi.mock("@/lib/trpc", () => ({
 			remove: {
 				useMutation: () => ({ mutate: vi.fn(), isPending: false }),
 			},
+			edit: {
+				useMutation: () => ({ mutate: vi.fn(), isPending: false }),
+			},
 		},
 	},
 }));

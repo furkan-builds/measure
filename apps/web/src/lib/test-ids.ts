@@ -28,6 +28,9 @@ const TEST_IDS = {
 		ENTRY_CALORIES: "food-log-entry-calories",
 		ENTRY_MEAL: "food-log-entry-meal",
 		ENTRY_DELETE: "food-log-entry-delete",
+		ENTRY_EDIT: "food-log-entry-edit",
+		ENTRY_SAVE: "food-log-entry-save",
+		ENTRY_CANCEL: "food-log-entry-cancel",
 		EMPTY: "food-log-empty",
 	},
 	DATE_NAV: {
