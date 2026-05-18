@@ -1,8 +1,8 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { sql } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/postgres-js";
 import { migrate } from "drizzle-orm/postgres-js/migrator";
-import { sql } from "drizzle-orm";
 import postgres from "postgres";
 import { testEnv } from "./vitest.env";
 
@@ -16,9 +16,7 @@ const setup = async () => {
 	const migrationsFolder = path.resolve(currentDir, "../../packages/database/drizzle");
 
 	await migrate(db, { migrationsFolder });
-	await db.execute(
-		sql`TRUNCATE TABLE food_log, servings, foods, weight_log, users CASCADE`,
-	);
+	await db.execute(sql`TRUNCATE TABLE food_log, servings, foods, weight_log, users CASCADE`);
 	await client.end();
 };
 

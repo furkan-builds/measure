@@ -219,9 +219,9 @@ describe("foodLog.edit", () => {
 		const entry = await createTestFoodLogEntry(user1.id);
 		const caller2 = appRouter.createCaller(createMockContext({ userId: user2.id }));
 
-		await expect(
-			caller2.foodLog.edit({ id: entry.id, calories: 999 }),
-		).rejects.toThrow("Food log entry not found");
+		await expect(caller2.foodLog.edit({ id: entry.id, calories: 999 })).rejects.toThrow(
+			"Food log entry not found",
+		);
 	});
 });
 
@@ -247,9 +247,9 @@ describe("foodLog.remove", () => {
 		const entry = await createTestFoodLogEntry(user1.id);
 		const caller2 = appRouter.createCaller(createMockContext({ userId: user2.id }));
 
-		await expect(
-			caller2.foodLog.remove({ id: entry.id }),
-		).rejects.toThrow("Food log entry not found");
+		await expect(caller2.foodLog.remove({ id: entry.id })).rejects.toThrow(
+			"Food log entry not found",
+		);
 	});
 });
 
