@@ -11,8 +11,9 @@ import {
 } from "@/components/ui/select";
 import { TEST_IDS } from "@/lib/test-ids";
 import { trpc } from "@/lib/trpc";
+import { evaluateMathExpression } from "@/lib/math";
 import { quickFoodLogSchema } from "@measure/shared/schemas/food";
-import { type FormEvent, useState } from "react";
+import { type FocusEvent, type FormEvent, useState } from "react";
 
 type QuickAddFormProps = {
 	date: Date;
@@ -30,6 +31,13 @@ const QuickAddForm = (quickAddFormProps: QuickAddFormProps) => {
 	const [fat, setFat] = useState("");
 	const [meal, setMeal] = useState<string>("lunch");
 	const [error, setError] = useState<string | null>(null);
+
+	const handleMathBlur = (e: FocusEvent<HTMLInputElement>, setter: (value: string) => void) => {
+		const result = evaluateMathExpression(e.target.value);
+		if (result !== null) {
+			setter(String(result));
+		}
+	};
 
 	const quickAdd = trpc.foodLog.quickAdd.useMutation({
 		onSuccess: () => {
@@ -93,12 +101,12 @@ const QuickAddForm = (quickAddFormProps: QuickAddFormProps) => {
 							<Label htmlFor="quick-add-calories">Calories</Label>
 							<Input
 								id="quick-add-calories"
-								type="number"
-								min="0"
-								step="any"
+								type="text"
+								inputMode="decimal"
 								placeholder="0"
 								value={calories}
 								onChange={(e) => setCalories(e.target.value)}
+								onBlur={(e) => handleMathBlur(e, setCalories)}
 								required
 								data-testid={TEST_IDS.QUICK_ADD.CALORIES}
 							/>
@@ -122,12 +130,12 @@ const QuickAddForm = (quickAddFormProps: QuickAddFormProps) => {
 							<Label htmlFor="quick-add-protein">Protein (g)</Label>
 							<Input
 								id="quick-add-protein"
-								type="number"
-								min="0"
-								step="any"
+								type="text"
+								inputMode="decimal"
 								placeholder="Optional"
 								value={protein}
 								onChange={(e) => setProtein(e.target.value)}
+								onBlur={(e) => handleMathBlur(e, setProtein)}
 								data-testid={TEST_IDS.QUICK_ADD.PROTEIN}
 							/>
 						</div>
@@ -135,12 +143,12 @@ const QuickAddForm = (quickAddFormProps: QuickAddFormProps) => {
 							<Label htmlFor="quick-add-carbs">Carbs (g)</Label>
 							<Input
 								id="quick-add-carbs"
-								type="number"
-								min="0"
-								step="any"
+								type="text"
+								inputMode="decimal"
 								placeholder="Optional"
 								value={carbs}
 								onChange={(e) => setCarbs(e.target.value)}
+								onBlur={(e) => handleMathBlur(e, setCarbs)}
 								data-testid={TEST_IDS.QUICK_ADD.CARBS}
 							/>
 						</div>
@@ -148,12 +156,12 @@ const QuickAddForm = (quickAddFormProps: QuickAddFormProps) => {
 							<Label htmlFor="quick-add-fat">Fat (g)</Label>
 							<Input
 								id="quick-add-fat"
-								type="number"
-								min="0"
-								step="any"
+								type="text"
+								inputMode="decimal"
 								placeholder="Optional"
 								value={fat}
 								onChange={(e) => setFat(e.target.value)}
+								onBlur={(e) => handleMathBlur(e, setFat)}
 								data-testid={TEST_IDS.QUICK_ADD.FAT}
 							/>
 						</div>
